@@ -1,6 +1,6 @@
-class Network(nn.Module):
+class LeafDiseaseClassifier(nn.Module):
     def __init__(self):
-        super(Network, self).__init__()
+        super(LeafDiseaseClassifier, self).__init__()
 
         self.conv_layers = nn.Sequential(
             nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1),
