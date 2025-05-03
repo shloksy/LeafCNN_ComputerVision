@@ -19,6 +19,9 @@ def load_model(checkpoint_path: str):
     return model
 
 def predict(img):
+    col1, col2, col3 = st.columns([1, 2, 1])
+    col2.image(img, caption="Input Image", width=300)
+    
     tensor = preprocess(img).unsqueeze(0)
     with torch.no_grad():
         output = model(tensor)
@@ -72,12 +75,9 @@ if not uploaded:
         img = Image.open(img_path).convert("RGB")
     else:
         st.stop()
-    
+        
     predict(img)
 else:
     img = Image.open(uploaded).convert("RGB")
-
-    col1, col2, col3 = st.columns([1, 2, 1])
-    col2.image(img, caption="Input Image", width=300)
 
     predict(img)
