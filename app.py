@@ -1,20 +1,42 @@
 import streamlit as st
 from PIL import Image
+import torch
+from torchvision import transforms
 
-# 1) Page setup
+from model import LeafDiseaseClassifier
+
+@st.cache(allow_output_mutation=True)
+def load_model(checkpoint_path: str):
+    model = LeafDiseaseClassifier()
+    ckpt   = torch.load(checkpoint_path, map_location="cpu")
+    model.load_state_dict(ckpt["model_state_dict"])
+    model.eval()
+    return model
+
+model = load_model("checkpoint_epoch_19.pth")
+
+MEAN = [0.4516, 0.4654, 0.4073]
+STD = [0.1550, 0.1325, 0.1726]
+
+preprocess = transforms.Compose([
+    transforms.Resize((128, 128)),   # match your training resolution
+    transforms.ToTensor(),
+    transforms.Normalize(MEAN, STD)
+])
+
+# Page setup
 st.set_page_config(page_title="LeafGuard", layout="centered")
+st.title("🌿 LeafGuard")
+st.write("Upload a tomato leaf image and get a disease prediction.")
 
-# 2) Title + instructions
-st.title("🍅 LeafGuard")
-st.write("Upload a tomato leaf image and get a disease prediction")
+uploaded = st.file_uploader("Choose an image file", type=["jpg", "png"])
+if uploaded:
+    img = Image.open(uploaded).convert("RGB")
+    st.image(img, caption="Input Image", use_container_width=True)
 
-# 3) File uploader
-img_file = st.file_uploader("Choose an image file", type=["jpg", "png"])
+    tensor = preprocess(img).unsqueeze(0)
+    with torch.no_grad():
+        output = model(tensor)
+        prediction = output.argmax(dim=1).item()
 
-# 4) Display the uploaded image
-if img_file:
-    img = Image.open(img_file)
-    st.image(img, caption="Your upload", use_container_width=True)
-    
-    # 5) Stub for prediction result
-    st.write("Prediction: _(model output will go here)_")
+    st.success(f"**Prediction:** {prediction}")
