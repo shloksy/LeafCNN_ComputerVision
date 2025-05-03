@@ -64,7 +64,7 @@ SAMPLE_DIR = "samples"
 sample_files = sorted([f for f in os.listdir(SAMPLE_DIR)], key=lambda s: s.lower())
 
 uploaded = st.file_uploader("Choose an image file")
-st.caption("Try to use images with a solid background")
+st.caption("Tip: try to use images with a solid background")
 
 if not uploaded:
     choice = st.selectbox(
