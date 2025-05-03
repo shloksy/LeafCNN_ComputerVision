@@ -28,19 +28,21 @@ preprocess = transforms.Compose([
 ])
 
 # Page setup
-st.title("🌿 LeafGuard")
+st.title("🌿 Leaf Guard")
 st.write("Upload a tomato leaf image and get a disease prediction.")
 
-class_names = ['Bacterial_Spot', 'Early_Blight', 
-               'Healthy', 'Late_Blight', 'Leaf_Mold', 
-               'Mosaic_Virus', 'Septoria_Leaf_Spot', 
-               'Target_Spot', 'Two_Spotted_Spider_Mite', 
-               'Yellowleaf__Curl_Virus']
+class_names = ['Bacterial Spot', 'Early Blight', 
+               'Healthy', 'Late Blight', 'Leaf Mold', 
+               'Mosaic Virus', 'Septoria Leaf_Spot', 
+               'Target Spot', 'Two Spotted Spider Mite', 
+               'Yellowleaf Curl Virus']
 
 uploaded = st.file_uploader("Choose an image file", type=["jpg", "png"])
 if uploaded:
     img = Image.open(uploaded).convert("RGB")
-    st.image(img, caption="Input Image")
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    col2.image(img, caption="Input Image", width=300)
 
     tensor = preprocess(img).unsqueeze(0)
     with torch.no_grad():
