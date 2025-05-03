@@ -4,6 +4,7 @@ import torch
 from torchvision import transforms
 
 from model import LeafDiseaseClassifier
+st.set_page_config(page_title="LeafGuard", layout="centered")
 
 @st.cache(allow_output_mutation=True)
 def load_model(checkpoint_path: str):
@@ -25,7 +26,6 @@ preprocess = transforms.Compose([
 ])
 
 # Page setup
-st.set_page_config(page_title="LeafGuard", layout="centered")
 st.title("🌿 LeafGuard")
 st.write("Upload a tomato leaf image and get a disease prediction.")
 
