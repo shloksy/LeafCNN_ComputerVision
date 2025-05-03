@@ -19,7 +19,7 @@ MEAN = [0.4516, 0.4654, 0.4073]
 STD = [0.1550, 0.1325, 0.1726]
 
 preprocess = transforms.Compose([
-    transforms.Resize((128, 128)),   # match your training resolution
+    transforms.Resize((128, 128)),  
     transforms.ToTensor(),
     transforms.Normalize(MEAN, STD)
 ])
