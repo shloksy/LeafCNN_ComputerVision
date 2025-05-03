@@ -38,7 +38,8 @@ class_names = ['Bacterial Spot', 'Early Blight',
                'Target Spot', 'Two Spotted Spider Mite', 
                'Yellowleaf Curl Virus']
 
-uploaded = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
+uploaded = st.file_uploader("Choose an image file", 
+                            type=["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"])
 if uploaded:
     img = Image.open(uploaded).convert("RGB")
 
