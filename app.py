@@ -50,5 +50,5 @@ if uploaded:
         pred_label = class_names[idx.item()]
         conf_pct   = conf.item() * 100
 
-    st.success(f"**Prediction:** {pred_label} <br>**Confidence:** {conf_pct:.2f}%",
-               unsafe_allow_html=True)
+    st.success(f"**Prediction:** {pred_label}")
+    st.success(f"**Confidence:** {conf_pct:.2f}%")
