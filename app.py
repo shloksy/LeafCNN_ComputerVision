@@ -37,9 +37,24 @@ class_names = ['Bacterial Spot', 'Early Blight',
                'Mosaic Virus', 'Septoria Leaf_Spot', 
                'Target Spot', 'Two Spotted Spider Mite', 
                'Yellowleaf Curl Virus']
+SAMPLE_DIR = "samples"
+sample_files = [f for f in os.listdir(SAMPLE_DIR)]
 
 uploaded = st.file_uploader("Choose an image file")
-if uploaded:
+
+if not uploaded:
+    choice = st.selectbox(
+        "Or try a sample image!", 
+        [""] + sample_files,
+        format_func=lambda x: " " if x=="" else x
+    )
+    if choice:
+        img_path = os.path.join(SAMPLE_DIR, choice)
+        img = Image.open(img_path).convert("RGB")
+    else:
+        st.stop()
+
+else:
     img = Image.open(uploaded).convert("RGB")
 
     col1, col2, col3 = st.columns([1, 2, 1])
