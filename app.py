@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from model import LeafDiseaseClassifier
 from disease_descriptions import descriptions
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model(checkpoint_path: str):
     model = LeafDiseaseClassifier()
     ckpt   = torch.load(checkpoint_path, map_location="cpu")
