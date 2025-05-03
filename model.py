@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class LeafDiseaseClassifier(nn.Module):
     def __init__(self):
         super(LeafDiseaseClassifier, self).__init__()
