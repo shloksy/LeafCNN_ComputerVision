@@ -50,4 +50,4 @@ if uploaded:
         pred_label = class_names[idx.item()]
         conf_pct   = conf.item() * 100
 
-    st.success(f"##Prediction:** {pred_label} ({conf_pct:.2f}%)##")
+    st.success(f"##Prediction: {pred_label} ({conf_pct:.2f}%)##")
