@@ -1,6 +1,7 @@
 import streamlit as st
 st.set_page_config(page_title="LeafGuard", layout="centered")
 
+import os
 from PIL import Image
 import torch
 from torchvision import transforms
