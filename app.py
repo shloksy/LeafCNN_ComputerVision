@@ -45,7 +45,7 @@ if uploaded:
     tensor = preprocess(img).unsqueeze(0)
     with torch.no_grad():
         output = model(tensor)
-        prediction = F.softmax(output,dim=1).item()
+        prediction = F.softmax(output, dim=1)
         conf, idx = prediction.max(dim=1)
         pred_label = class_names[idx.item()]
         conf_pct   = conf.item() * 100
