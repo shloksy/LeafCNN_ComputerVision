@@ -5,8 +5,8 @@ from PIL import Image
 st.set_page_config(page_title="LeafGuard", layout="centered")
 
 # 2) Title + instructions
-st.title("🍅 Tomato Leaf Classifier")
-st.write("Upload a leaf image and get a disease prediction.")
+st.title("🍅 LeafGuard")
+st.write("Upload a tomato leaf image and get a disease prediction")
 
 # 3) File uploader
 img_file = st.file_uploader("Choose an image file", type=["jpg", "png"])
