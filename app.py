@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 from model import LeafDiseaseClassifier
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model(checkpoint_path: str):
     model = LeafDiseaseClassifier()
     ckpt   = torch.load(checkpoint_path, map_location="cpu")
@@ -51,7 +51,7 @@ if uploaded:
         conf_pct   = conf.item() * 100
 
     st.markdown(
-    f"<span style='color: green; font-size:22px;'>"
+    f"<span style='color: green; font-size:26px;'>"
     f"Prediction: {pred_label}<br>"
     f"Confidence: {conf_pct:.2f}%"
     "</span>",
