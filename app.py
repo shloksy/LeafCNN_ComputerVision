@@ -18,6 +18,24 @@ def load_model(checkpoint_path: str):
     model.eval()
     return model
 
+def predict(img):
+    tensor = preprocess(img).unsqueeze(0)
+    with torch.no_grad():
+        output = model(tensor)
+        prediction = F.softmax(output, dim=1)
+        conf, idx = prediction.max(dim=1)
+        pred_label = class_names[idx.item()]
+        conf_pct   = conf.item() * 100
+
+    st.markdown(
+    f"<span style='color: green; font-size:26px;'>"
+    f"Prediction: {pred_label}<br>"
+    f"Confidence: {conf_pct:.2f}%"
+    "</span>",
+    unsafe_allow_html=True)
+
+    st.write(descriptions[idx.item()])
+
 model = load_model("checkpoint_epoch_19.pth")
 
 MEAN = [0.4516, 0.4654, 0.4073]
@@ -54,26 +72,12 @@ if not uploaded:
         img = Image.open(img_path).convert("RGB")
     else:
         st.stop()
-
+    
+    predict(img)
 else:
     img = Image.open(uploaded).convert("RGB")
 
     col1, col2, col3 = st.columns([1, 2, 1])
     col2.image(img, caption="Input Image", width=300)
 
-    tensor = preprocess(img).unsqueeze(0)
-    with torch.no_grad():
-        output = model(tensor)
-        prediction = F.softmax(output, dim=1)
-        conf, idx = prediction.max(dim=1)
-        pred_label = class_names[idx.item()]
-        conf_pct   = conf.item() * 100
-
-    st.markdown(
-    f"<span style='color: green; font-size:26px;'>"
-    f"Prediction: {pred_label}<br>"
-    f"Confidence: {conf_pct:.2f}%"
-    "</span>",
-    unsafe_allow_html=True)
-
-    st.write(descriptions[idx.item()])
+    predict(img)
