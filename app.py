@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 from model import LeafDiseaseClassifier
 
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def load_model(checkpoint_path: str):
     model = LeafDiseaseClassifier()
     ckpt   = torch.load(checkpoint_path, map_location="cpu")
@@ -40,7 +40,7 @@ class_names = ['Bacterial_Spot', 'Early_Blight',
 uploaded = st.file_uploader("Choose an image file", type=["jpg", "png"])
 if uploaded:
     img = Image.open(uploaded).convert("RGB")
-    st.image(img, caption="Input Image", use_container_width=True)
+    st.image(img, caption="Input Image")
 
     tensor = preprocess(img).unsqueeze(0)
     with torch.no_grad():
