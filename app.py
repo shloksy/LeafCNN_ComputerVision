@@ -59,8 +59,9 @@ class_names = ['Bacterial Spot', 'Early Blight',
                'Mosaic Virus', 'Septoria Leaf_Spot', 
                'Target Spot', 'Two Spotted Spider Mite', 
                'Yellowleaf Curl Virus']
+
 SAMPLE_DIR = "samples"
-sample_files = [f for f in os.listdir(SAMPLE_DIR)]
+sample_files = sorted([f for f in os.listdir(SAMPLE_DIR)], key=lambda s: s.lower())
 
 uploaded = st.file_uploader("Choose an image file")
 
