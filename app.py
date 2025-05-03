@@ -73,11 +73,11 @@ if not uploaded:
     if choice:
         img_path = os.path.join(SAMPLE_DIR, choice)
         img = Image.open(img_path).convert("RGB")
-    else:
-        st.stop()
-        
+    else: st.stop()
+    
     predict(img)
+    
 else:
     img = Image.open(uploaded).convert("RGB")
-
+    
     predict(img)
