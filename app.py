@@ -14,7 +14,7 @@ img_file = st.file_uploader("Choose an image file", type=["jpg", "png"])
 # 4) Display the uploaded image
 if img_file:
     img = Image.open(img_file)
-    st.image(img, caption="Your upload", use_column_width=True)
+    st.image(img, caption="Your upload", use_container_width=True)
     
     # 5) Stub for prediction result
     st.write("Prediction: _(model output will go here)_")
