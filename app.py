@@ -7,6 +7,7 @@ from torchvision import transforms
 import torch.nn.functional as F
 
 from model import LeafDiseaseClassifier
+from disease_descriptions import descriptions
 
 @st.cache(allow_output_mutation=True)
 def load_model(checkpoint_path: str):
@@ -58,3 +59,5 @@ if uploaded:
     f"Confidence: {conf_pct:.2f}%"
     "</span>",
     unsafe_allow_html=True)
+
+    st.write(descriptions[idx.item()])
