@@ -29,7 +29,7 @@ preprocess = transforms.Compose([
 
 # Page setup
 st.title("🌿 Leaf Guard")
-st.write("Upload a tomato leaf image and get a disease prediction.")
+st.write_stream("Upload a tomato leaf image and get a disease prediction.")
 
 class_names = ['Bacterial Spot', 'Early Blight', 
                'Healthy', 'Late Blight', 'Leaf Mold', 
