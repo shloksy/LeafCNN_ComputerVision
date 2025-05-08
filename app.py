@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="LeafGuard", layout="centered")
+st.set_page_config(page_title="🍅 Protectomato", layout="centered")
 
 import os
 from PIL import Image
@@ -51,7 +51,7 @@ preprocess = transforms.Compose([
 ])
 
 # Page setup
-st.title("🌿 Leaf Guard")
+st.title("🍅 Protectomato")
 st.write("Upload a tomato leaf image and get a disease prediction.")
 
 class_names = ['Bacterial Spot', 'Early Blight', 
