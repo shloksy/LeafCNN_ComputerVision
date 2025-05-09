@@ -1,5 +1,5 @@
 # 🍅 Protectomato 
-[Check it out: protectomato.streamlit.app](protectomato.streamlit.app)
+Check it out: [protectomato.streamlit.app](url)
 
 **Your smart ally against tomato plant disease**  
 A machine learning project that trains a compact convolutional neural network to recognize 10 tomato-leaf conditions, then packages it into an easy-to-use Streamlit web app for drag-and-drop disease diagnosis.
